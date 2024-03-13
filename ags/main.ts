@@ -3,6 +3,7 @@ import "style/style"
 import init from "lib/init"
 import options from "options"
 import Bar from "widget/bar/Bar"
+import Dock from "widget/dock/Dock"
 import Launcher from "widget/launcher/Launcher"
 import NotificationPopups from "widget/notifications/NotificationPopups"
 import OSD from "widget/osd/OSD"
@@ -22,6 +23,8 @@ App.config({
         init()
     },
     closeWindowDelay: {
+        "dock0": options.transition.value,
+        "dock1": options.transition.value,
         "launcher": options.transition.value,
         "overview": options.transition.value,
         "quicksettings": options.transition.value,
@@ -29,6 +32,7 @@ App.config({
     },
     windows: () => [
         ...forMonitors(Bar),
+        ...forMonitors(Dock),
         ...forMonitors(NotificationPopups),
         ...forMonitors(ScreenCorners),
         ...forMonitors(OSD),

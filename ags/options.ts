@@ -66,7 +66,7 @@ const options = mkOptions(OPTIONS, {
             start: opt<BarWidget[]>([
                 "launcher",
                 "workspaces",
-                "taskbar",
+                //"taskbar",
                 "expander",
                 "messages",
             ]),
@@ -134,6 +134,16 @@ const options = mkOptions(OPTIONS, {
         powermenu: {
             monochrome: opt(false),
             action: opt(() => App.toggleWindow("powermenu")),
+        },
+    },
+
+    dock: {
+        flatButtons: opt(true),
+        position: opt<"top" | "bottom">("bottom"),
+        taskbar: {
+            iconSize: opt(56),
+            monochrome: opt(false),
+            exclusive: opt(false),
         },
     },
 
