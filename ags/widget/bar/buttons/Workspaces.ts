@@ -17,6 +17,10 @@ const Workspaces = (ws: number) => Widget.Box({
         setup: self => self.hook(hyprland, () => {
             self.toggleClassName("active", hyprland.active.workspace.id === i)
             self.toggleClassName("occupied", (hyprland.getWorkspace(i)?.windows || 0) > 0)
+
+            const distance = Math.abs(hyprland.active.workspace.id - i);
+            self.toggleClassName("small", distance > 1)
+            self.toggleClassName("smaller", distance > 2)
         }),
     })),
     setup: box => {

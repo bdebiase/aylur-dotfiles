@@ -40,7 +40,7 @@ window#launcher .launcher {
     }
 
     button.app-item {
-        @include button($flat: true, $reactive: false);
+        @include button($flat: true);
 
         >box {
             @include spacing(0.5);
