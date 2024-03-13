@@ -70,6 +70,7 @@ $button-radius: $radius;
     }
 
     .taskbar .indicator.active {
+        transition: background-color $transition;
         background-color: $primary-bg;
         border-radius: $radius;
         min-height: 4pt;

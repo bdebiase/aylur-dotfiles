@@ -23,7 +23,7 @@ const DummyItem = (address: string) => Widget.Box({
 
 const AppItem = (address: string, monitor: number) => {
     const client = hyprland.getClient(address)
-    if (!client || client.class === "" || client.workspace.id < -1)
+    if (!client || client.class === "")
         return DummyItem(address)
 
     const app = apps.list.find(app => app.match(client.class))
@@ -44,7 +44,7 @@ const AppItem = (address: string, monitor: number) => {
             )),
         }),
         setup: w => w.hook(hyprland, () => {
-            w.toggleClassName("active", hyprland.active.client.address === address)
+            //w.toggleClassName("active", hyprland.active.client.address === address)
         })
     })
 
@@ -58,7 +58,8 @@ const AppItem = (address: string, monitor: number) => {
             //        : true
             //}),
             setup: w => w.hook(hyprland, () => {
-                w.visible = hyprland.getClient(address).monitor === monitor
+                const client = hyprland.getClient(address)
+                w.visible = client.monitor === monitor && client.workspace.id >= 0
             }, "event"),
         },
         Widget.Overlay({
@@ -113,14 +114,14 @@ export default (monitor: number) => Widget.EventBox({
 
             const falloffEffect = Math.pow(0.980, effectiveDistance);
 
-            const baseSize = 1.0; // Base
+            const baseSize = 1.0;
             const maxSizeIncrease = 0.35;
             const newSize = baseSize + (maxSizeIncrease * falloffEffect);
 
             const clampedSize = Math.min(Math.max(newSize, baseSize), baseSize + maxSizeIncrease);
 
             child.children[0]?.child.child.child.setCss(`-gtk-icon-transform: scale(${clampedSize});`);
-            child.children[0]?.child.child.setCss(`padding: ${options.theme.padding * 1.5}pt ${options.theme.padding * 1.5 - (baseSize - newSize) * 12}pt;`)
+            child.children[0]?.child.child.setCss(`padding: ${options.theme.padding * 1.5}pt ${options.theme.padding * 1.5 - (baseSize - newSize) * 24}pt;`)
         });
     }),
     on_scroll_up: () => dispatch("m+1"),

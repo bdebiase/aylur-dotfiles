@@ -15,7 +15,7 @@ export default (monitor: number) => {
         transition: pos.as(pos => pos === "top" ? "slide_down" : "slide_up"),
     })
 
-    Widget.Window({
+    return Widget.Window({
         monitor,
         class_name: "floating-dock",
         name: `dock${monitor}`,
@@ -44,7 +44,8 @@ export default (monitor: number) => {
 
                 self.child.child.child.children[0]?.child.children.forEach(child => {
                     child.child?.child.child.child.setCss(`transition: -gtk-icon-transform ${options.transition * 1.5}ms; -gtk-icon-transform: scale(1);`)
-                    child.child?.child.child.setCss(`transition: padding ${options.transition * 1.5}ms; padding: ${options.theme.padding * 1.5}pt;`)
+                    //child.child?.child.child.setCss(`transition: padding ${options.transition * 1.5}ms; padding: ${options.theme.padding * 1.5}pt;`)
+                    child.child?.child.child.setCss(`transition: padding ${options.transition * 1.5}ms; padding: ${options.theme.padding}pt;`)
                 })
             })
         }
