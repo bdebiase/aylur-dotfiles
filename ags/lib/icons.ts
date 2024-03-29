@@ -23,7 +23,10 @@ export default {
         nix: "nixos-symbolic",
     },
     app: {
+        grid: "view-app-grid-symbolic",
         terminal: "terminal-symbolic",
+        starred: "starred",
+        calculator: "accessories-calculator-symbolic",
     },
     fallback: {
         executable: "application-x-executable",
