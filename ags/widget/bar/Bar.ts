@@ -43,15 +43,15 @@ export default (monitor: number) => Widget.Window({
         css: "min-width: 2px; min-height: 2px;",
         startWidget: Widget.Box({
             hexpand: true,
-            children: start.bind().as(s => s.map(w => widget[w]())),
+            children: start.bind().as(s => s.map(w => widget[w](monitor))),
         }),
         centerWidget: Widget.Box({
             hpack: "center",
-            children: center.bind().as(c => c.map(w => widget[w]())),
+            children: center.bind().as(c => c.map(w => widget[w](monitor))),
         }),
         endWidget: Widget.Box({
             hexpand: true,
-            children: end.bind().as(e => e.map(w => widget[w]())),
+            children: end.bind().as(e => e.map(w => widget[w](monitor))),
         }),
     }),
 })
