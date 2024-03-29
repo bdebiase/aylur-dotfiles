@@ -138,13 +138,9 @@ const options = mkOptions(OPTIONS, {
     },
 
     dock: {
-        flatButtons: opt(true),
         position: opt<"top" | "bottom">("bottom"),
-        taskbar: {
-            iconSize: opt(56),
-            monochrome: opt(false),
-            exclusive: opt(false),
-        },
+        iconSize: opt(56),
+        iconZoomMultiplier: opt(1.25),
     },
 
     launcher: {
