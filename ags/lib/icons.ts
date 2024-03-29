@@ -10,6 +10,11 @@ export const substitutes = {
     "preferences-system": "emblem-system-symbolic",
     "com.github.Aylur.ags-symbolic": "controls-symbolic",
     "com.github.Aylur.ags": "controls-symbolic",
+    "spotify": "spotify",
+    "code": "code",
+    "whatsapp": "whatsapp",
+    "steam": "steam",
+    "openai": "chatgpt",
 }
 
 export default {
