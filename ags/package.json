@@ -15,5 +15,8 @@
         "eslint-plugin-n": "^16.6.2",
         "eslint-plugin-promise": "^6.1.1",
         "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "mathjs": "^12.4.1"
     }
 }

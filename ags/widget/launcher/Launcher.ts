@@ -4,6 +4,7 @@ import icons from "lib/icons"
 import options from "options"
 import nix from "service/nix"
 import * as AppLauncher from "./AppLauncher"
+import * as Calculator from "./Calculator"
 import * as NixRun from "./NixRun"
 import * as ShRun from "./ShRun"
 
@@ -13,6 +14,7 @@ const isnix = nix.available
 function Launcher() {
     const favs = AppLauncher.Favorites()
     const applauncher = AppLauncher.Launcher()
+    const calculator = Calculator.Calculator()
     const sh = ShRun.ShRun()
     const shicon = ShRun.Icon()
     const nix = NixRun.NixRun()
@@ -61,6 +63,13 @@ function Launcher() {
         hexpand: true,
         primary_icon_name: icons.ui.search,
         on_accept: ({ text }) => {
+            if (calculator.reveal_child) {
+                entry.text = calculator.getAnswer()
+                entry.set_position(-1)
+                entry.focus()
+                return
+            }
+
             if (text?.startsWith(":nx"))
                 nix.run(text.substring(3))
             else if (text?.startsWith(":sh"))
@@ -76,6 +85,8 @@ function Launcher() {
             favs.reveal_child = text === ""
             help.reveal_child = text.split(" ").length === 1 && text?.startsWith(":")
 
+            calculator.updateResult(text)
+
             if (text?.startsWith(":nx"))
                 nix.filter(text.substring(3))
             else
@@ -88,11 +99,14 @@ function Launcher() {
 
             if (!text?.startsWith(":"))
                 applauncher.filter(text)
+
+            if (calculator.reveal_child)
+                applauncher.filter("")
         },
     })
 
     function focus() {
-        entry.text = "Search"
+        //entry.text = "Search"
         entry.set_position(-1)
         entry.select_region(0, -1)
         entry.grab_focus()
@@ -117,6 +131,7 @@ function Launcher() {
             favs,
             help,
             applauncher,
+            calculator,
             nix,
             sh,
         ],

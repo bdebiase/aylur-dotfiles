@@ -1,4 +1,3 @@
-import { icon } from "lib/utils"
 import options from "options"
 import icons from "lib/icons"
 
@@ -28,7 +27,7 @@ const AnswerItem = (a: string) => {
     })
 
     const appicon = Widget.Icon({
-        icon: icon("accessories-calculator-symbolic"),
+        icon: icons.app.calculator,
         size: iconSize.bind(),
     })
 
