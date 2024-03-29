@@ -87,7 +87,7 @@ class Nix extends Service {
         this.ready = false
         this.#db = {}
 
-        const json = JSON.parse(await bash(`nix search ${nixpkgs} --json`))
+        const json = JSON.parse(await bash(`nix search ${nixpkgs} ^ --json`))
         for (const pkg of Object.keys(json)) {
             const name = pkg.replace(PREFIX, "")
             this.#db[name] = { ...json[pkg], name }
