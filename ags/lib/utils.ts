@@ -17,13 +17,30 @@ export function icon(name: string | null, fallback = icons.missing) {
     if (GLib.file_test(name, GLib.FileTest.EXISTS))
         return name
 
-    const icon = (substitutes[name] || name)
-    if (Utils.lookUpIcon(icon))
-        return icon
+    let processedName = name
+    let hasSymbolicSuffix = name.endsWith("-symbolic")
 
-    print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
+    if (hasSymbolicSuffix)
+        processedName = processedName.slice(0, -"-symbolic".length)
+
+    for (const pattern in substitutes) {
+        const regex = new RegExp(pattern, "i")
+        if (regex.test(processedName)) {
+            processedName = substitutes[pattern]
+            break
+        }
+    }
+
+    if (hasSymbolicSuffix)
+        processedName += "-symbolic"
+
+    if (Utils.lookUpIcon(processedName))
+        return processedName
+
+    print(`no icon substitute "${processedName}" for "${name}", fallback: "${fallback}"`)
     return fallback
 }
+
 
 /**
  * @returns execAsync(["bash", "-c", cmd])
