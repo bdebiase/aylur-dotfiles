@@ -29,12 +29,13 @@ window.popup {
 
         separator {
             background-color: $border-color;
+            margin: $spacing * .5;
         }
 
         menuitem {
             @include button;
             padding: $spacing * .5;
-            margin: ($spacing * .5) 0;
+            margin: ($spacing * .25) 0;
 
             &:first-child {
                 margin-top: 0;
