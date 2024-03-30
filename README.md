@@ -1,3 +1,19 @@
+## Additions
+![2024-03-3013-27-07-ezgif com-optimize (2)](https://github.com/bdebiase/aylur-dotfiles/assets/66143154/0feaf2e1-53bd-4145-a4d1-9a19a626401c)
+
+Some difference between the original repo and this one are:
+* Dock
+  * Smart hiding
+  * Launcher button
+  * Special workspace button
+  * Zoom animations
+* Launcher improvements
+  * Built-in calculator (requires mathjs dependency, with `bun install`)
+* Personalized changes
+* Icons for custom xdg (web) apps
+* Minor styling changes
+* Workspace button animations
+
 # Hyprland
 
 ![2024-02-20_16-53-17](https://github.com/Aylur/dotfiles/assets/104676705/e1b76d0c-7a3e-48c1-ad68-e4032d7fcc24)
